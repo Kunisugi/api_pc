@@ -1,0 +1,7 @@
+{
+  "name": "api_pc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
