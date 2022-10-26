@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 style="text-align:center;">Registrate!</h3>
+  <form [formGroup]="formulario" (ngSubmit)="registrar()">
+    <ion-item>
+    <ion-label position="floating" style="text-align:center;">Usuario </ion-label>
+    <ion-input type="text" formControlName="user"></ion-input>
+    </ion-item>
+    <p *ngIf="!formulario.get('user').valid && formulario.get('user').errors.required && formulario.get('user').touched" style="color:red;">*Campo requerido </p>
+    <p *ngIf="!formulario.get('user').valid && formulario.get('user').errors.minlength && formulario.get('user').touched" style="color:red;">*Minimo 3 caracteres </p>
+    <p *ngIf="!formulario.get('user').valid && formulario.get('user').errors.maxlength && formulario.get('user').touched" style="color:red;">*Maximo 20 caracteres </p>
+    <p *ngIf="!formulario.get('user').valid && formulario.get('user').errors.pattern && formulario.get('user').touched" style="color:red;">*Sin caracteres especiales </p>
+
+    <ion-item>
+    <ion-label position="floating" style="text-align:center;"> Contraseña </ion-label>
+    <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <p *ngIf="!formulario.get('password').valid && formulario.get('password').errors.required && formulario.get('password').touched" style="color:red;">*Campo requerido </p>
+    <p *ngIf="!formulario.get('password').valid && formulario.get('password').errors.minlength && formulario.get('password').touched" style="color:red;">*Minimo 3 caracteres </p>
+    <p *ngIf="!formulario.get('password').valid && formulario.get('password').errors.maxlength && formulario.get('password').touched" style="color:red;">*Maximo 20 caracteres </p>
+    <br>
+    <ion-button fill="outline" color="warning" type="sumbit" expand="block" [disabled]="formulario.invalid">Registrarse</ion-button>
+
+  </form>
+
+
+</ion-content>

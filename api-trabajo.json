@@ -1,0 +1,26 @@
+{
+  "productos": [],
+  "user": [
+    {
+      "id": 1,
+      "user": "javi",
+      "password": "1234",
+      "rol": "usuario"
+    },
+    {
+      "user": "javier",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "user": "javix",
+      "password": "1234",
+      "id": 3
+    },
+    {
+      "user": "fer",
+      "password": "1234",
+      "id": 4
+    }
+  ]
+}
