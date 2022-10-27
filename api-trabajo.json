@@ -1,5 +1,5 @@
 {
-  "productos": [],
+  "productos": [{"nombre": "Logitech203", "imgProducto":"https://centrale.cl/wp-content/uploads/prod_11242-1.jpeg", "cantidad": 100, "id" : 1}],
   "user": [
     {
       "id": 1,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioConId } from './../modelo/user';
 import { FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import { UserServiceService } from './../servicio/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   public formulario : FormGroup;
 
 
-  constructor( private fb : FormBuilder, private api: UserServiceService) { this.form();}
+  constructor( private fb : FormBuilder, private api: UserServiceService, private router: Router) { this.form();}
   public form(){
     this.formulario = this.fb.group({
       user: new FormControl(''),
@@ -39,6 +40,7 @@ export class LoginPage implements OnInit {
     if(this.user){
       if(this.user.password== this.formulario.value.password){//Validación de contraseña
         alert('Excelente puede pasar')
+        this.router.navigate(['home'])
       }else{
         alert('Contraseña erronea, porfavor vuelva a intentar')//Si la contraseña no es igual
       }
