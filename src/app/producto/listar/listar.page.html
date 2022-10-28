@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>listar</ion-title>
+    <ion-title style="text-align:center;">{{usuarioLinea.user}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon> </ion-button>
+
   <ion-card *ngFor="let producto of listarProductos" [routerLink]="['verProducto',producto.nombre]" [queryParams]="{id:producto.id}">
-    <img [src]="producto.imgProducto">
+    <img [src]="producto.img">
     <ion-card-header>
       <ion-card-title>{{producto.nombre}}</ion-card-title>
     </ion-card-header>
@@ -19,7 +21,7 @@
 
   <ion-infinite-scroll (ionInfinite)="cargarMasProductos()">
     <ion-infinite-scroll-content loadingText="Cargando más productos...">
-
+      <p>Productos Cargados</p>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

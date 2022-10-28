@@ -39,14 +39,22 @@ export class LoginPage implements OnInit {
     })
     if(this.user){
       if(this.user.password== this.formulario.value.password){//Validación de contraseña
-        alert('Excelente puede pasar')
-        this.router.navigate(['home'])
+        if(this.user.rol == 'user'){ //Si es usuario normal mandalo al home
+          alert('Excelente puede pasar')
+          localStorage.setItem("user", JSON.stringify(this.user))
+          this.router.navigate(['home'])
+        }else{ // Si es administrador mandalo al listar Producto
+          alert('Excelente puede pasar')
+          localStorage.setItem("user", JSON.stringify(this.user))
+          this.router.navigate(['listar-producto'])
+        }
       }else{
         alert('Contraseña erronea, porfavor vuelva a intentar')//Si la contraseña no es igual
       }
     }
     else{
       alert('No se encuentro usuario') //Si no se encuentra el usuario
+      localStorage.clear()
     }
   }
 }

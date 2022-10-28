@@ -1,34 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IProductoConId } from './../modelo/i-producto';
-import { SvProductoService } from './../services/sv-producto.service';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { IProductoConId} from './../../producto/modelo/i-producto';
+import { SvProductoService} from './../../producto/services/sv-producto.service';
 import { Router } from '@angular/router';
 import { UsuarioConId } from './../../usuario/modelo/user';
 import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
-  selector: 'app-listar',
-  templateUrl: './listar.page.html',
-  styleUrls: ['./listar.page.scss'],
+  selector: 'app-listar-producto',
+  templateUrl: './listar-producto.page.html',
+  styleUrls: ['./listar-producto.page.scss'],
 })
-export class ListarPage implements OnInit {
-  @ViewChild(IonInfiniteScroll)
-  public scroll: IonInfiniteScroll;
+export class ListarProductoPage implements OnInit {
   public listarProductos: Array<IProductoConId>= [];
   public usuarioLinea: UsuarioConId;
-  public finProductos: string;
-
-  constructor(private api:SvProductoService, private router: Router ) { }
+  @ViewChild(IonInfiniteScroll)
+  public scroll: IonInfiniteScroll;
+  constructor(private api:SvProductoService, private router: Router) { }
 
   ngOnInit() {
     this.api.listarProductos$.subscribe(data => {
       this.listarProductos = data;
-
-      });
-
-    const per = localStorage.getItem('user');
+    })
     this.api.listarPrimerosProductos();
-    this.usuarioLinea = JSON.parse(localStorage.getItem("user"))}
-
+    this.usuarioLinea = JSON.parse(localStorage.getItem("user"))
+  }
   public cargarMasProductos(){
     this.api.obtenerMasProductos();
     if(this.scroll){
@@ -36,15 +31,13 @@ export class ListarPage implements OnInit {
       alert('productos cargados')
       console.log('productos cargados..')
     }
+
   }
+
+
   public logout(){
     localStorage.clear();
     this.router.navigate([''])
   }
-
-
-
-
-
 
 }

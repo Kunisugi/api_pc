@@ -28,11 +28,27 @@ export class SvProductoService {
       }
     })
   }
-  public getProducto(id):Observable<IProducto>{
+  public getProducto(id):Observable<IProducto>{ //Obtener un producto por id
     let direccion = this.api_producto + id ;
     return this.http.get<IProducto>(direccion)
   }
 
+  public patchProducto(producto, id){ //Modificar producto
+    let direccion = this.api_producto + id;
+    return this.http.patch(direccion, producto);
+  }
 
+  public deleteProducto(id){ //Eliminar producto
+    let direccion = this.api_producto + id;
+    return this.http.delete(direccion);
+  }
+
+  public postProducto(nuevoProducto:IProducto): Observable<any>{
+    return this.http.post(this.api_producto, nuevoProducto, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+  }
 
 }

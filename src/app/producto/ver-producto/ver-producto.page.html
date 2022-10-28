@@ -5,8 +5,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+
   <ion-card *ngIf="producto">
-    <img [src]="producto.imgProducto">
+    <img [src]="producto.img">
     <ion-card-header>
       <ion-card-title>{{producto.nombre}}</ion-card-title>
     </ion-card-header>

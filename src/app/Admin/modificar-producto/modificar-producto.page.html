@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modificar-producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button fill="outline" [routerLink]="['/listar-producto']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+
+  <form [formGroup]="formulario">
+    <ion-item>
+      <ion-label position="floating">Nombre Producto</ion-label>
+      <ion-input formControlName="nombreProducto" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cantidad Producto</ion-label>
+      <ion-input formControlName="cantidad" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Imagen Producto</ion-label>
+      <ion-input formControlName="img" type="file" (change)="leerArchivo($event)"></ion-input>
+    </ion-item>
+
+
+    <ion-button  [disabled]="formulario.invalid" type="sumbit"  color="tertiary" expand="block"  fill="outline" (click)="guardarDatos(formulario.value)" >Confirmar</ion-button>
+    <ion-button color="danger"   fill="outline" (click)="eliminarPersonaje()" expand="block" >Eliminar</ion-button>
+  </form>
+
+</ion-content>

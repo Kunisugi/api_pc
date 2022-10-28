@@ -1,6 +1,6 @@
 export interface IProducto {
   nombre: string;
-  imgProducto: string;
+  img: string;
   cantidad: number;
 }
 
