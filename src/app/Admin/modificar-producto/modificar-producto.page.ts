@@ -70,14 +70,14 @@ export class ModificarProductoPage implements OnInit {
       nombre : guardar.nombreProducto,
       img: this.imagenBase64,
       cantidad : guardar.cantidad,
-      precio: this.producto.precio,
-      ram: this.producto.ram,
-      procesador:this.producto.procesador,
-      discoDuro:this.producto.discoDuro ,
-      placaMadre: this.producto.placaMadre,
-      gabinete:this.producto.gabinete ,
-      tarjetaGrafica:this.producto.tarjetaGrafica ,
-      gama: this.producto.gama
+      precio: guardar.precio,
+      ram: guardar.ram,
+      procesador:guardar.pprocesador,
+      discoDuro:guardar.discoDuro ,
+      placaMadre: guardar.placaMadre,
+      gabinete:guardar.gabinete ,
+      tarjetaGrafica:guardar.tarjetaGrafica ,
+      gama: guardar.gama
     };
     this.api.patchProducto(update, this.id).subscribe(personaje => {
       this.router.navigate(['listar-producto']).then(() => {
