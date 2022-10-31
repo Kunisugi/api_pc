@@ -23,8 +23,26 @@
       <p>Gabinete: {{producto.gabinete}}</p>
       <p>Tarjeta Grafica: {{producto.tarjetaGrafica}}</p>
     </ion-card-content>
-
   </ion-card>
+  <ion-grid >
+
+    <ion-row>
+      <ion-col size="4">
+        <ion-button color="danger" (click)="restarItem()"><ion-icon name="remove-circle-outline" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <p>{{cantidadCart}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button type="button" color="success" (click)="addItem()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+
+<p>Total Carrito: {{precioCarrito}}</p>
+
+<ion-button type="button"  color="success" (click)="AddCart()"> Añadir al carrito</ion-button>
+
 
 
 </ion-content>
