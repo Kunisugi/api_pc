@@ -40,7 +40,7 @@ export class ModificarProductoPage implements OnInit {
         'nombreProducto' : this.producto.nombre,
         'img': this.imagenBase64,
         'cantidad': this.producto.cantidad,
-        'precio': this.producto.precio ,
+        'precio': this.producto.precio,
         'ram': this.producto.ram,
         'procesador':this.producto.procesador,
         'discoDuro':this.producto.discoDuro ,
@@ -69,7 +69,15 @@ export class ModificarProductoPage implements OnInit {
     const update = {
       nombre : guardar.nombreProducto,
       img: this.imagenBase64,
-      cantidad : guardar.cantidad
+      cantidad : guardar.cantidad,
+      precio: this.producto.precio,
+      ram: this.producto.ram,
+      procesador:this.producto.procesador,
+      discoDuro:this.producto.discoDuro ,
+      placaMadre: this.producto.placaMadre,
+      gabinete:this.producto.gabinete ,
+      tarjetaGrafica:this.producto.tarjetaGrafica ,
+      gama: this.producto.gama
     };
     this.api.patchProducto(update, this.id).subscribe(personaje => {
       this.router.navigate(['listar-producto']).then(() => {
