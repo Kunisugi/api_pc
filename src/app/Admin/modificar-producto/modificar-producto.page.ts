@@ -20,7 +20,15 @@ export class ModificarProductoPage implements OnInit {
   public form(){this.formulario= this.fb.group({
     nombreProducto: new FormControl(''),
     img: new FormControl(''),
-    cantidad: new FormControl('')
+    cantidad: new FormControl(''),
+    precio: new FormControl (''),
+    ram: new FormControl (''),
+    procesador: new FormControl (''),
+    discoDuro: new FormControl (''),
+    placaMadre: new FormControl (''),
+    gabinete: new FormControl (''),
+    tarjetaGrafica: new FormControl (''),
+    gama: new FormControl (''),
   })}
 
   ngOnInit() {
@@ -31,7 +39,17 @@ export class ModificarProductoPage implements OnInit {
       this.formulario.setValue({
         'nombreProducto' : this.producto.nombre,
         'img': this.imagenBase64,
-        'cantidad': this.producto.cantidad
+        'cantidad': this.producto.cantidad,
+        'precio': this.producto.precio ,
+        'ram': this.producto.ram,
+        'procesador':this.producto.procesador,
+        'discoDuro':this.producto.discoDuro ,
+        'placaMadre': this.producto.placaMadre,
+        'gabinete':this.producto.gabinete ,
+        'tarjetaGrafica':this.producto.tarjetaGrafica ,
+        'gama': this.producto.gama
+
+
       })
     })
   }

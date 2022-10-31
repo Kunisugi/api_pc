@@ -23,6 +23,47 @@
       <ion-input type="file" formControlName="img" (change)="leerArchivo($event)"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label position="floating" >precio: </ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Ram: </ion-label>
+      <ion-input type="text" formControlName="ram"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Procesador: </ion-label>
+      <ion-input type="text" formControlName="procesador"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Disco Duro: </ion-label>
+      <ion-input type="text" formControlName="discoDuro"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Placa Madre: </ion-label>
+      <ion-input type="text" formControlName="placaMadre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >gabinete: </ion-label>
+      <ion-input type="text" formControlName="gabinete"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Tarjeta Grafica: </ion-label>
+      <ion-input type="text" formControlName="tarjetaGrafica"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" >Gama: </ion-label>
+      <ion-input type="text" formControlName="gama"></ion-input>
+    </ion-item>
+
+
     <ion-button  [disabled]="formulario.invalid" type="sumbit"  color="tertiary" expand="block"  fill="outline">Añadir</ion-button>
 
   </form>

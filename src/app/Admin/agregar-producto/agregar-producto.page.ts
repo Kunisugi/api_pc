@@ -17,7 +17,15 @@ export class AgregarProductoPage implements OnInit {
   public form( ){this.formulario = this.fb.group({
     nombre: new FormControl(''),
     cantidad : new FormControl (''),
-    img: new FormControl ('')
+    img: new FormControl (''),
+    precio: new FormControl (''),
+    ram: new FormControl (''),
+    procesador: new FormControl (''),
+    discoDuro: new FormControl (''),
+    placaMadre: new FormControl (''),
+    gabinete: new FormControl (''),
+    tarjetaGrafica: new FormControl (''),
+    gama: new FormControl (''),
   })
   }
 
