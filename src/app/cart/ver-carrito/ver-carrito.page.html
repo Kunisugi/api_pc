@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>verCarrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+  <div *ngIf="index > 0; then conItems  else sinItems"></div>
+  <ng-template #conItems >
+  <ion-card *ngFor="let item of carrito">
+    <img [src]="item.foto" >
+  <ion-card-content>
+    <p>{{item.nombre}}</p>
+    <p>Cantidad: {{item.cantidad}}</p>
+    <p>Total: {{item.total}}</p>
+    <p></p>
+  </ion-card-content>
+</ion-card>
+<p>total compra: </p>
+</ng-template>
+
+<ng-template #sinItems> <br><p>Agrega items..</p></ng-template>
+
+
+
+
+
+
+</ion-content>

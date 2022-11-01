@@ -7,6 +7,13 @@
 <ion-content>
   <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon> </ion-button>
 
+  <ion-fab vertical="top" horizontal="end" >
+
+    <ion-fab-button (click)="getCart()" [routerLink]="['ver-carrito']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-card *ngFor="let producto of listarProductos" [routerLink]="['verProducto',producto.nombre]" [queryParams]="{id:producto.id}">
     <img [src]="producto.img">
     <ion-card-header>

@@ -43,9 +43,11 @@ export class LoginPage implements OnInit {
           alert('Excelente puede pasar')
           localStorage.setItem("user", JSON.stringify(this.user))
           this.router.navigate(['home'])
+          localStorage.setItem("carrito", 'Sin item')
         }else{ // Si es administrador mandalo al listar Producto
           alert('Excelente puede pasar')
           localStorage.setItem("user", JSON.stringify(this.user))
+          localStorage.setItem("carrito", 'Sin Item')
           this.router.navigate(['listar-producto'])
         }
       }else{

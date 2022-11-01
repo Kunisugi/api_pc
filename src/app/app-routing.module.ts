@@ -39,6 +39,10 @@ const routes: Routes = [{
     path: 'listar-producto/agregar-producto',
     loadChildren: () => import('./Admin/agregar-producto/agregar-producto.module').then( m => m.AgregarProductoPageModule), // solamente ADMIN
     canActivate: [GAdmGuard]
+  },
+  {
+    path: 'home/ver-carrito',
+    loadChildren: () => import('./cart/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
   }
 
 ];

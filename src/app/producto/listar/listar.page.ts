@@ -4,7 +4,7 @@ import { SvProductoService } from './../services/sv-producto.service';
 import { Router } from '@angular/router';
 import { UsuarioConId } from './../../usuario/modelo/user';
 import { IonInfiniteScroll } from '@ionic/angular';
-
+import { CartService } from './../../cart/servicio/cart.service';
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.page.html',
@@ -17,7 +17,7 @@ export class ListarPage implements OnInit {
   public usuarioLinea: UsuarioConId;
   public finProductos: string;
 
-  constructor(private api:SvProductoService, private router: Router ) { }
+  constructor(private api:SvProductoService, private router: Router, private cart : CartService) { }
 
   ngOnInit() {
     this.api.listarProductos$.subscribe(data => {
@@ -40,6 +40,10 @@ export class ListarPage implements OnInit {
   public logout(){
     localStorage.clear();
     this.router.navigate([''])
+  }
+
+  public getCart(){
+    this.cart.getCarrito()
   }
 
 
