@@ -159,6 +159,18 @@
       "password": "1234",
       "rol": "admin",
       "id": 3
+    },
+    {
+      "user": "kuni",
+      "password": "1234",
+      "rol": "user",
+      "id": 4
+    },
+    {
+      "user": "navarrete",
+      "password": "1234",
+      "rol": "user",
+      "id": 5
     }
   ]
 }

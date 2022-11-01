@@ -33,11 +33,13 @@ export class ListarProductoPage implements OnInit {
     }
 
   }
-
-
   public logout(){
     localStorage.clear();
-    this.router.navigate([''])
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    })
+
+
   }
 
 }

@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
 
-  private cart = [];
-  constructor() {}
+  private cart: Array<any> = [];
+  constructor() {this.cart = JSON.parse(localStorage.getItem("carrito")) }
 
   public addCarro(carrito){
     const existe = this.cart.find(existe => {
@@ -15,14 +15,19 @@ export class CartService {
     if (existe){
       console.log("producto ya existe -->", existe)
       const nuevoCantidad = {
-        cantidad : existe.cantidad + carrito.cantidad,
-        total: (existe.cantidad + carrito.cantidad) * carrito.precio,
-        idProducto: existe.idProducto,
         nombre : existe.nombre,
-        foto : existe.foto,
-        precio: existe.precio
+        total: (existe.cantidad + carrito.cantidad) * carrito.precio,
+        cantidad : existe.cantidad + carrito.cantidad,
+        idProducto: existe.idProducto,
+        precio: existe.precio,
+        foto : existe.foto
+
       }
-      this.cart.pop();
+      const index = this.cart.findIndex(carrito =>
+          carrito.idProducto === existe.idProducto
+        )
+        console.log(index)
+        this.cart.splice(index, 1)
       console.log('Debería agregar en cantidad')
       this.cart.push(nuevoCantidad);
       localStorage.setItem("carrito", JSON.stringify(this.cart))

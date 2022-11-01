@@ -39,7 +39,9 @@ export class ListarPage implements OnInit {
   }
   public logout(){
     localStorage.clear();
-    this.router.navigate([''])
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    })
   }
 
   public getCart(){

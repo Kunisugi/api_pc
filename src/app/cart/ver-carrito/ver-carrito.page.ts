@@ -8,15 +8,14 @@ import { CartService } from './../servicio/cart.service';
 })
 export class VerCarritoPage implements OnInit {
   public carrito : Array<any> = [];
-  public index: number = 0;
-
+  public totalCompra = 0;
   constructor( private cart : CartService) { }
 
   ngOnInit() {
     this.carrito = this.cart.getCarrito()
     console.log('estoy en carrito --->',this.carrito)
-    this.index = this.carrito.length
-
   }
+
+
 
 }

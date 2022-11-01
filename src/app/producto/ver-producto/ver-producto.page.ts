@@ -54,6 +54,7 @@ export class VerProductoPage implements OnInit {
 
   verArray(){
     this.cart.getCarrito();
+    console.log(this.cart)
 
   }
 }
