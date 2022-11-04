@@ -7,6 +7,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CartService {
   private api_compra = 'http://localhost:3000/compras/';
   private cart: Array<any> = [];
+  private comportamientoListar = new BehaviorSubject<Array<any>>([]);
+  public listarCompras$ = this.comportamientoListar.asObservable();
+
   constructor(
     private http:HttpClient
   ) {this.cart = JSON.parse(localStorage.getItem("carrito")) }
@@ -44,13 +47,17 @@ export class CartService {
   public getCarrito(){
     return this.cart
   }
-
   public postCompra(nuevaCompra : any): Observable<any>{
     return this.http.post(this.api_compra, nuevaCompra, {
       headers:
       {
         'Content-Type': 'application/json; charset=utf-8'
       }
+    })
+  }
+  public getCompras(){
+    this.http.get<Array<any>>(this.api_compra).subscribe(data => {
+      this.comportamientoListar.next(data);
     })
   }
 

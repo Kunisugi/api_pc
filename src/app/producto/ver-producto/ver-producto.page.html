@@ -16,17 +16,26 @@
     </div>
     <ion-card-content>
       <h2>Componentes</h2>
+
       <p> Stock: {{producto.cantidad}} </p>
+
       <p>Memoria Ram: {{producto.ram}}</p>
+
       <p>Procesador: {{producto.procesador}}</p>
-      <p>Precio: ${{producto.precio}}</p>
+
+      <p>Precio: {{producto.precio | currency:'CLP'}}</p>
+
       <p>Disco Duro: {{producto.discoDuro}}</p>
+
       <p>Placa Madre: {{producto.placaMadre}}</p>
+
       <p>Gabinete: {{producto.gabinete}}</p>
+
       <p>Tarjeta Grafica: {{producto.tarjetaGrafica}}</p>
+
     </ion-card-content>
   </ion-card>
-  <p style="text-align:center;">Total: {{precioCarrito}}</p>
+  <p style="text-align:center;">Total: {{precioCarrito | currency: 'CLP'}}</p>
   <ion-grid >
 
     <ion-row>

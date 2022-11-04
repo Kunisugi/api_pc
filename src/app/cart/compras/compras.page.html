@@ -5,5 +5,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let compras of listarCompras">
+
+    <ion-list>
+      <ion-item>
+      <h1>Detalle</h1>
+    </ion-item>
+    <ion-item>
+      Productos
+    </ion-item>
+      <ion-item *ngFor="let carrito of compras.cart">
+        <p>Nombre producto: {{carrito.nombre}}</p>
+      </ion-item>
+      <ion-item>
+      <p>Total compra: {{ compras.total | currency:'CLP'}}</p>
+      </ion-item>
+      <ion-item>
+      <p>Fecha compra: {{compras.fecha}}</p>
+    </ion-item>
+    </ion-list>
+
+  </ion-card>
 
 </ion-content>

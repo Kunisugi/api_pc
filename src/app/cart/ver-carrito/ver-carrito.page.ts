@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './../servicio/cart.service';
 import { UsuarioConId } from './../../usuario/modelo/user';
+import { formatDate } from '@angular/common';
 
 
 
@@ -86,10 +87,13 @@ export class VerCarritoPage implements OnInit {
     this.cart.postCompra({
       nombre : this.usuario.user,
       idUser: this.usuario.id,
-      cart: this.carrito
+      cart: this.carrito,
+      fecha: formatDate(new Date(), 'dd/MM/yyyy', 'en') ,
+      total: this.totalCompra
     }).subscribe(data => {
       alert('creado')
     })
+    localStorage.setItem("carrito", '[]')
 
   }
 

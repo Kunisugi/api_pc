@@ -21,8 +21,7 @@ export class ListarPage implements OnInit {
 
   ngOnInit() {
     this.api.listarProductos$.subscribe(data => {
-      this.listarProductos = data;
-
+      this.listarProductos = data
       });
 
     const per = localStorage.getItem('user');
