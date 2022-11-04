@@ -7,12 +7,18 @@
 
 <ion-content>
 
-
-  <ion-fab vertical="top" horizontal="end" >
-
-    <ion-fab-button  (click)="getCart()" [routerLink]="['ver-carrito']" >
-      <ion-icon name="cart-outline"></ion-icon>
+  <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true">
+    <ion-fab-button>
+      <ion-icon name="chevron-down-circle"></ion-icon>
     </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button [routerLink]="['ver-carrito']">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [routerLink]="['compras']">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 
   <ion-card *ngFor="let producto of listarProductos" [routerLink]="['verProducto',producto.nombre]" [queryParams]="{id:producto.id}">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from './../servicio/cart.service';
 import { UsuarioConId } from './../../usuario/modelo/user';
 import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 
@@ -15,7 +16,7 @@ export class VerCarritoPage implements OnInit {
   public carrito : Array<any> = [];
   public totalCompra = 0;
   public usuario : UsuarioConId;
-  constructor( private cart : CartService) { }
+  constructor( private cart : CartService, private router : Router) { }
 
   ngOnInit() {
     this.carrito = this.cart.getCarrito()
@@ -66,6 +67,7 @@ export class VerCarritoPage implements OnInit {
 
     }
   }
+
   sumarCarrito(carrito){
     carrito.cantidad = carrito.cantidad + 1;
     carrito.total = carrito.precio * carrito.cantidad;
@@ -91,17 +93,15 @@ export class VerCarritoPage implements OnInit {
       fecha: formatDate(new Date(), 'dd/MM/yyyy', 'en') ,
       total: this.totalCompra
     }).subscribe(data => {
-      alert('creado')
     })
-    localStorage.setItem("carrito", '[]')
+    localStorage.setItem("carrito", '[]');
+    this.router.navigate(['home/compras']).then(() => {
+      window.location.reload()
+    })
+
 
   }
 
 
-  public mandarTotal(total){
-    console.log('ENTRO')
-    this.totalCompra = total + this.totalCompra
-
-  }
 
 }

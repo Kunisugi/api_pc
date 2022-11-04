@@ -32,7 +32,6 @@ export class ListarPage implements OnInit {
     this.api.obtenerMasProductos();
     if(this.scroll){
       this.scroll.complete();
-      alert('productos cargados')
       console.log('productos cargados..')
     }
   }
@@ -43,9 +42,7 @@ export class ListarPage implements OnInit {
     })
   }
 
-  public getCart(){
-    this.cart.getCarrito()
-  }
+
 
 
 

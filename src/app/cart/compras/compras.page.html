@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>compras</ion-title>
+    <ion-title style="text-align:center;">Historial de compras</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let compras of listarCompras">
+  <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+  <ion-card *ngFor="let compras of comprasUser">
 
     <ion-list>
       <ion-item>
@@ -26,5 +27,4 @@
     </ion-list>
 
   </ion-card>
-
 </ion-content>
