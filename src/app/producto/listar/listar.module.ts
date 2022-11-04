@@ -9,6 +9,7 @@ import { ListarPageRoutingModule } from './listar-routing.module';
 import { ListarPage } from './listar.page';
 import { HttpClientModule } from '@angular/common/http';
 import { SvProductoService } from '../services/sv-producto.service';
+import { CartService } from 'src/app/cart/servicio/cart.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { SvProductoService } from '../services/sv-producto.service';
     HttpClientModule
   ],
   declarations: [ListarPage],
-  providers: [SvProductoService]
+  providers: [SvProductoService, CartService]
 })
 export class ListarPageModule {}

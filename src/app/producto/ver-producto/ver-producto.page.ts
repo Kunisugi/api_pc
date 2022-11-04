@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SvProductoService } from './../services/sv-producto.service';//Llamamos al servicios
 import { IProducto} from './../modelo/i-producto'; //Llamamos a la Interfaz de producto
 import { CartService  } from './../../cart/servicio/cart.service';
@@ -12,17 +12,22 @@ import { CartService  } from './../../cart/servicio/cart.service';
 export class VerProductoPage implements OnInit {
   public id : number;
   public producto : IProducto;
-  public cantidadCart = 0;
+  public cantidadCart = 1;
   public precioCarrito = 0;
 
 
-  constructor(private activedRoute : ActivatedRoute, private api: SvProductoService, private cart : CartService) { }
+  constructor(
+    private activedRoute : ActivatedRoute,
+    private api: SvProductoService,
+    private cart : CartService,
+    private router : Router ) { }
 
   ngOnInit() {
     this.id = this.activedRoute.snapshot.queryParams['id']; //Recibimos la id
 
     this.api.getProducto(this.id).subscribe(data => { //Hacemos un get con la id
       this.producto = data; //le damos el valor a producto con el producto rescatado
+      this.precioCarrito = this.precioCarrito + this.producto.precio
     })
   }
 
@@ -50,6 +55,10 @@ export class VerProductoPage implements OnInit {
     foto: this.producto.img
     }
     this.cart.addCarro(cart);
+    alert('Producto agregado al carrito :D')
+    this.router.navigate(['home']).then(() => {
+      window.location.reload();
+    })
   }
 
   verArray(){

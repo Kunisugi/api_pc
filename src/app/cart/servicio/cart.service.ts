@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  private api_compra = 'http://localhost:3000/compras/';
   private cart: Array<any> = [];
-  constructor() {this.cart = JSON.parse(localStorage.getItem("carrito")) }
+  constructor(
+    private http:HttpClient
+  ) {this.cart = JSON.parse(localStorage.getItem("carrito")) }
 
   public addCarro(carrito){
     const existe = this.cart.find(existe => {
@@ -21,7 +24,6 @@ export class CartService {
         idProducto: existe.idProducto,
         precio: existe.precio,
         foto : existe.foto
-
       }
       const index = this.cart.findIndex(carrito =>
           carrito.idProducto === existe.idProducto
@@ -33,7 +35,7 @@ export class CartService {
       localStorage.setItem("carrito", JSON.stringify(this.cart))
 
     }else{
-      console.log('No hago nda')
+      console.log('Añado al carrito')
       this.cart.push(carrito)
       localStorage.setItem("carrito", JSON.stringify(this.cart))
     }
@@ -43,6 +45,13 @@ export class CartService {
     return this.cart
   }
 
-
+  public postCompra(nuevaCompra : any): Observable<any>{
+    return this.http.post(this.api_compra, nuevaCompra, {
+      headers:
+      {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+  }
 
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align:center;">login</ion-title>
+    <ion-title style="text-align:center;">Pc Labs</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,13 +14,15 @@
 
 
     <ion-item>
-    <ion-label position="floating" style="text-align:center;"> Contraseña: </ion-label>
+    <ion-label position="floating" style="text-align:center;">Contraseña: </ion-label>
     <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
     <br>
-    <ion-button fill="outline" color="tertiary" type="sumbit" expand="block">Inicar Sesión</ion-button>
-    <ion-button fill="outline" color="warning" [routerLink]="['/registrar']" expand="block"> Registrarse</ion-button>
+    <div class="centrado">
+    <ion-button class="Boton1" fill="outline" type="submit">Iniciar Sesión</ion-button><br>
+    <ion-button class="Boton2" [routerLink]="['/registrar']" fill="outline"> Registrarse</ion-button>
+    </div>
   </form>
   <br>
 

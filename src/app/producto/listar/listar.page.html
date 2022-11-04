@@ -1,28 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title style="text-align:center;">{{usuarioLinea.user}}</ion-title>
+    <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon> </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon> </ion-button>
+
 
   <ion-fab vertical="top" horizontal="end" >
 
-    <ion-fab-button (click)="getCart()" [routerLink]="['ver-carrito']">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button  (click)="getCart()" [routerLink]="['ver-carrito']" >
+      <ion-icon name="cart-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-card *ngFor="let producto of listarProductos" [routerLink]="['verProducto',producto.nombre]" [queryParams]="{id:producto.id}">
+    <div class="centrado">
     <img [src]="producto.img">
-    <ion-card-header>
-      <ion-card-title>{{producto.nombre}}</ion-card-title>
-    </ion-card-header>
+    </div>
     <ion-card-content>
-      <p>Información</p>
+      <h1 style="text-align:center; color: rgb(255, 255, 255);" >{{producto.nombre}}</h1>
+      <p>Información:</p>
       <p>Precio: ${{producto.precio}}</p>
       <p>Stock: {{producto.cantidad}}</p>
+      <p>Gama: {{producto.gama}}</p>
     </ion-card-content>
 
   </ion-card>

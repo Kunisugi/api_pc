@@ -15,7 +15,12 @@ export class ModificarProductoPage implements OnInit {
   public producto: IProducto;
   public imagenBase64 = '';
 
-  constructor(private fb: FormBuilder, private api: SvProductoService, private activateRouter : ActivatedRoute, private router :Router ) { this.form();}
+  constructor(
+    private fb: FormBuilder,
+    private api: SvProductoService,
+    private activateRouter : ActivatedRoute,
+    private router :Router
+    ) { this.form();}
 
   public form(){this.formulario= this.fb.group({
     nombreProducto: new FormControl(''),

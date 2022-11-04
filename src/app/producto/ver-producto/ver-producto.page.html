@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align:center;">ver-producto</ion-title>
+    <ion-title style="text-align:center;">Información del producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,13 +8,15 @@
   <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
 
   <ion-card *ngIf="producto">
+    <div class="centrado"><br>
     <img [src]="producto.img">
     <ion-card-header>
-      <ion-card-title>{{producto.nombre}}</ion-card-title>
+    <ion-card-title><h3>{{producto.nombre}}</h3></ion-card-title>
     </ion-card-header>
+    </div>
     <ion-card-content>
-      <h3>Componentes</h3>
-      <p>Stock:{{producto.cantidad}}</p>
+      <h2>Componentes</h2>
+      <p> Stock: {{producto.cantidad}} </p>
       <p>Memoria Ram: {{producto.ram}}</p>
       <p>Procesador: {{producto.procesador}}</p>
       <p>Precio: ${{producto.precio}}</p>
@@ -24,25 +26,25 @@
       <p>Tarjeta Grafica: {{producto.tarjetaGrafica}}</p>
     </ion-card-content>
   </ion-card>
+  <p style="text-align:center;">Total: {{precioCarrito}}</p>
   <ion-grid >
 
     <ion-row>
       <ion-col size="4">
-        <ion-button color="danger" (click)="restarItem()"><ion-icon name="remove-circle-outline" ></ion-icon></ion-button>
+        <ion-button color="danger" (click)="restarItem()" ><ion-icon name="remove-circle-outline" ></ion-icon></ion-button>
       </ion-col>
       <ion-col size="4">
         <p>{{cantidadCart}}</p>
       </ion-col>
       <ion-col size="4">
-        <ion-button type="button" color="success" (click)="addItem()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+        <ion-button type="button" color="success" (click)="addItem()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
       </ion-col>
     </ion-row>
 </ion-grid>
 
-<p>Total Carrito: {{precioCarrito}}</p>
 
-<ion-button type="button"  color="success" (click)="AddCart()"> Añadir al carrito</ion-button>
-<ion-button type="button"  color="success" (click)="verArray()"> Ver Array</ion-button>
+
+<ion-button type="button"  color="success" (click)="AddCart()" expand="block" fill="outline"> Añadir al carrito </ion-button>
 
 
 

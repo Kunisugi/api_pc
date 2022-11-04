@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VerCarritoPageRoutingModule } from './ver-carrito-routing.module';
+import { ComprasPageRoutingModule } from './compras-routing.module';
 
-import { VerCarritoPage } from './ver-carrito.page';
+import { ComprasPage } from './compras.page';
 import { HttpClientModule } from '@angular/common/http';
 import { CartService } from '../servicio/cart.service';
 
@@ -15,10 +15,10 @@ import { CartService } from '../servicio/cart.service';
     CommonModule,
     FormsModule,
     IonicModule,
-    VerCarritoPageRoutingModule,
+    ComprasPageRoutingModule,
     HttpClientModule
   ],
-  declarations: [VerCarritoPage],
+  declarations: [ComprasPage],
   providers: [CartService]
 })
-export class VerCarritoPageModule {}
+export class ComprasPageModule {}

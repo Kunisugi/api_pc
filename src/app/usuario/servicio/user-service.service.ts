@@ -12,6 +12,7 @@ export class UserServiceService {
   public listarUser$ = this.comportamientoListar.asObservable();
 
   constructor(private http : HttpClient) { }
+
   public postUsuario(nuevoUser: User): Observable<any>{
     return this.http.post(this.api_user, nuevoUser,{
       headers: {

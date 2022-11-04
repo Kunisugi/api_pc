@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>verCarrito</ion-title>
+    <ion-title style="text-align:center;">Carrito</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,18 +8,37 @@
   <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
 
   <div *ngIf="carrito">
-  <ion-card *ngFor="let item of carrito" >
-    <img [src]="item.foto" >
-  <ion-card-content>
-    <p>{{item.nombre}}</p>
-    <p>Cantidad: {{item.cantidad}}</p>
-    <p >Total: {{item.total}}</p>
-
-  </ion-card-content>
-  <p></p>
-</ion-card>
+    <ion-card *ngFor="let item of carrito" >
+      <img [src]="item.foto" >
+      <ion-card-content>
+        <p>{{item.nombre}}</p>
+        <p>Cantidad: {{item.cantidad}}</p>
+        <p >Precio Producto: {{item.total}}</p>
 
 
-</div>
+        <ion-button color="danger" (click)="restarCarrito(item)"><ion-icon name="remove-circle-outline" ></ion-icon></ion-button>
 
+        <ion-button  (click)="sumarCarrito(item)"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+
+        <ion-button color="danger" (click)="eliminarProducto(item)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>
+
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Total Carrito: {{totalCompra}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-button expand="full" color="success" (click)="pagarTotalCarrito()">Pagar</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
