@@ -9,6 +9,7 @@ import { VerCarritoPageRoutingModule } from './ver-carrito-routing.module';
 import { VerCarritoPage } from './ver-carrito.page';
 import { HttpClientModule } from '@angular/common/http';
 import { CartService } from '../servicio/cart.service';
+import { SvProductoService } from 'src/app/producto/services/sv-producto.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { CartService } from '../servicio/cart.service';
     HttpClientModule
   ],
   declarations: [VerCarritoPage],
-  providers: [CartService]
+  providers: [CartService, SvProductoService]
 })
 export class VerCarritoPageModule {}

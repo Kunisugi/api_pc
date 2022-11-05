@@ -1,22 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title style="text-align:center;">admin {{usuarioLinea.user}}</ion-title>
+    <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon> </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button fill="outline" size="small" (click)="logout()" color="danger"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-  <ion-button  expand="block"  color="tertiary" fill="outline" [routerLink]="['agregar-producto']">Añadir producto</ion-button>
+  <ion-button  expand="block"  color="success" fill="outline" [routerLink]="['agregar-producto']">Añadir producto</ion-button>
 
   <ion-card *ngFor="let producto of listarProductos" [routerLink]="['modificar-producto',producto.nombre]" [queryParams]="{id:producto.id}">
     <img [src]="producto.img" loading="lazy">
-    <ion-card-header>
-      <ion-card-title>{{producto.nombre}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
+    <ion-card-content style="color:white;">
+      <h1 style="text-align:center; color: rgb(255, 255, 255);" >{{producto.nombre}}</h1>
       <p >Información</p>
-      <p>Precio: {{producto.precio}}</p>
+      <p>Precio: {{producto.precio | currency:'CLP'}}</p>
       <p>Cantidad: {{producto.cantidad}}</p>
+
     </ion-card-content>
 
   </ion-card>
@@ -24,7 +23,7 @@
   <ion-infinite-scroll (ionInfinite)="cargarMasProductos()">
     <ion-infinite-scroll-content loadingText="Cargando más productos...">
       <p>
-        Productos cargados...
+        Productos cargados
       </p>
 
     </ion-infinite-scroll-content>

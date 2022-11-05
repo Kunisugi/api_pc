@@ -90,7 +90,6 @@ export class ModificarProductoPage implements OnInit {
       })
     })
   }
-
   eliminarPersonaje():void{
     this.api.deleteProducto(this.id).subscribe(() =>
     alert('eliminado :('));

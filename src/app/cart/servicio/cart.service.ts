@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private api_compra = 'http://localhost:3000/compras/';
+  private api_producto = 'http://localhost:3000/productos/';
+
   private cart: Array<any> = [];
   private comportamientoListar = new BehaviorSubject<Array<any>>([]);
   public listarCompras$ = this.comportamientoListar.asObservable();
@@ -59,6 +62,10 @@ export class CartService {
     this.http.get<Array<any>>(this.api_compra).subscribe(data => {
       this.comportamientoListar.next(data);
     })
+  }
+  public descontarCompra(producto, id){
+    let direccion = this.api_producto + id;
+    return this.http.patch(direccion, producto)
   }
 
 }
