@@ -93,19 +93,8 @@ export class VerCarritoPage implements OnInit {
     this.carrito.forEach(producto => {
       this.apiProducto.getProducto(producto.idProducto).subscribe(data => {
         this.product = data;
-        console.log(producto, '  -------> Soy Producto ')
-        console.log(this.product, 'Soy product')
       })
-      const modificarProducto = {
-        ...this.product,
-        cantidad: this.product.cantidad - producto.cantidad
-      }
-      console.log(producto, '---> Soy producto');
-        this.cart.descontarCompra(modificarProducto, producto.idProducto).subscribe(producto => {
-          console.log(producto)
-        })
     })
-
     localStorage.setItem("carrito", '[]');
     this.router.navigate(['home/compras']).then(() => {
       window.location.reload()

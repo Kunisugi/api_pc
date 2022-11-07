@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.api.listarUser$.subscribe(datos => {
       this.listaUsuarios = datos;
-      console.log(this.listaUsuarios)
+      //console.log(this.listaUsuarios)
     })
     this.api.getPersona(); //Se llama a la funcion para llenar los datos de arriba
   }
