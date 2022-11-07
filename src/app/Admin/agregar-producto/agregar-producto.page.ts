@@ -15,17 +15,17 @@ export class AgregarProductoPage implements OnInit {
   constructor(private fb: FormBuilder, private api: SvProductoService, private router: Router ) {this.form(); }
 
   public form( ){this.formulario = this.fb.group({
-    nombre: new FormControl(''),
-    cantidad : new FormControl (''),
+    nombre: new FormControl('', Validators.required),
+    cantidad : new FormControl ('', Validators.required),
     img: new FormControl (''),
-    precio: new FormControl (''),
-    ram: new FormControl (''),
-    procesador: new FormControl (''),
-    discoDuro: new FormControl (''),
-    placaMadre: new FormControl (''),
-    gabinete: new FormControl (''),
-    tarjetaGrafica: new FormControl (''),
-    gama: new FormControl (''),
+    precio: new FormControl ('', Validators.required),
+    ram: new FormControl ('', Validators.required),
+    procesador: new FormControl ('', Validators.required),
+    discoDuro: new FormControl ('', Validators.required),
+    placaMadre: new FormControl ('', Validators.required),
+    gabinete: new FormControl ('', Validators.required),
+    tarjetaGrafica: new FormControl ('', Validators.required),
+    gama: new FormControl ('', Validators.required),
   })
   }
 

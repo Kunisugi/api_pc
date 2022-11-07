@@ -7,7 +7,9 @@
 <ion-content>
   <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
 
-  <div *ngIf="carrito">
+  <p *ngIf="carritoVacio == 0; then noDatos else Datos"></p>
+
+    <ng-template #Datos>
     <ion-card *ngFor="let item of carrito" >
       <img [src]="item.foto" >
       <ion-card-content>
@@ -25,7 +27,11 @@
         </ion-button>
       </ion-card-content>
     </ion-card>
-  </div>
+
+
+</ng-template>
+<ng-template #noDatos><br> <h1>Añade productos a tu carrito!!!</h1></ng-template>
+
 </ion-content>
 <ion-footer>
   <ion-grid>
@@ -39,3 +45,4 @@
     </ion-row>
   </ion-grid>
 </ion-footer>
+

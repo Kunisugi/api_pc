@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>agregar-producto</ion-title>
+    <ion-title style="text-align:center;">Añadir producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,57 +12,67 @@
       <ion-label position="floating">Nombre: </ion-label>
       <ion-input type="text" formControlName="nombre" ></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('nombre').valid && formulario.get('nombre').errors.required && formulario.get('nombre').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Cantidad: </ion-label>
       <ion-input type="number" formControlName="cantidad"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('cantidad').valid && formulario.get('cantidad').errors.required && formulario.get('cantidad').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
-      <ion-label position="floating" >imgProducto: </ion-label>
+      <ion-label position="floating" >Imagen producto </ion-label>
       <ion-input type="file" formControlName="img" (change)="leerArchivo($event)"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('img').valid && formulario.get('img').errors.required && formulario.get('img').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >precio: </ion-label>
       <ion-input type="number" formControlName="precio"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('precio').valid && formulario.get('precio').errors.required && formulario.get('precio').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Ram: </ion-label>
       <ion-input type="text" formControlName="ram"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('ram').valid && formulario.get('ram').errors.required && formulario.get('ram').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Procesador: </ion-label>
       <ion-input type="text" formControlName="procesador"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('procesador').valid && formulario.get('procesador').errors.required && formulario.get('procesador').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Disco Duro: </ion-label>
       <ion-input type="text" formControlName="discoDuro"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('discoDuro').valid && formulario.get('discoDuro').errors.required && formulario.get('discoDuro').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Placa Madre: </ion-label>
       <ion-input type="text" formControlName="placaMadre"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('placaMadre').valid && formulario.get('placaMadre').errors.required && formulario.get('placaMadre').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >gabinete: </ion-label>
       <ion-input type="text" formControlName="gabinete"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('gabinete').valid && formulario.get('gabinete').errors.required && formulario.get('gabinete').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Tarjeta Grafica: </ion-label>
       <ion-input type="text" formControlName="tarjetaGrafica"></ion-input>
     </ion-item>
+    <p *ngIf="!formulario.get('tarjetaGrafica').valid && formulario.get('tarjetaGrafica').errors.required && formulario.get('tarjetaGrafica').touched" style="color:red;">*Campo requerido </p>
 
     <ion-item>
       <ion-label position="floating" >Gama: </ion-label>
       <ion-input type="text" formControlName="gama"></ion-input>
     </ion-item>
-
+    <p *ngIf="!formulario.get('gama').valid && formulario.get('gama').errors.required && formulario.get('gama').touched" style="color:red;">*Campo requerido </p>
 
     <ion-button  [disabled]="formulario.invalid" type="sumbit"  color="tertiary" expand="block"  fill="outline">Añadir</ion-button>
 

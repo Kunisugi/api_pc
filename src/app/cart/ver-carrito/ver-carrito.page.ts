@@ -19,6 +19,7 @@ export class VerCarritoPage implements OnInit {
   public totalCompra = 0;
   public usuario : UsuarioConId;
   public product : IProducto;
+  public carritoVacio: number;
   constructor( private cart : CartService, private router : Router, private apiProducto : SvProductoService) { }
 
   ngOnInit() {
@@ -26,8 +27,11 @@ export class VerCarritoPage implements OnInit {
     this.carrito.forEach(cart => {
       this.totalCompra = cart.total + this.totalCompra;
     })
-  }
+    this.carritoVacio = this.carrito.length
+    console.log(this.carritoVacio)
 
+
+  }
 
   public eliminarProducto(carrito){
     const index = this.carrito.findIndex(cart =>

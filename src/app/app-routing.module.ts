@@ -42,11 +42,13 @@ const routes: Routes = [{
   },
   {
     path: 'home/ver-carrito',
-    loadChildren: () => import('./cart/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
+    loadChildren: () => import('./cart/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule),
+    canActivate: [ GUsuarioGuard]
   },
   {
     path: 'home/compras',
-    loadChildren: () => import('./cart/compras/compras.module').then( m => m.ComprasPageModule)
+    loadChildren: () => import('./cart/compras/compras.module').then( m => m.ComprasPageModule),
+    canActivate: [ GUsuarioGuard]
   }
 
 ];

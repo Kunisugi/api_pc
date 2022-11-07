@@ -12,6 +12,7 @@ export class ComprasPage implements OnInit {
   public listarCompras: Array<any> = [];
   public usuarioLinea: UsuarioConId;
   public comprasUser: Array<any> = [];
+  public carritoVacio: number;
 
   constructor(private cart : CartService) {
   }
@@ -28,6 +29,9 @@ export class ComprasPage implements OnInit {
     this.comprasUser = this.listarCompras.filter(listarCompra =>
       listarCompra.idUser === this.usuarioLinea.id //Valida si hay compras que tengan el mismo id que nuestro user
     )
+
+
+
 
 
   }
