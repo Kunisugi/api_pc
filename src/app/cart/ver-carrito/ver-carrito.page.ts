@@ -5,6 +5,7 @@ import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 import { SvProductoService } from './../../producto/services/sv-producto.service';
 import { IProducto } from './../../producto/modelo/i-producto';
+import { IcarroConId } from './../modelo/icarro';
 
 
 
@@ -14,94 +15,82 @@ import { IProducto } from './../../producto/modelo/i-producto';
   styleUrls: ['./ver-carrito.page.scss'],
 })
 export class VerCarritoPage implements OnInit {
-  public compra:any;
-  public carrito : Array<any> = [];
-  public totalCompra = 0;
+  public carrito :IcarroConId;
+  public totalCompra :  number = 0;
   public usuario : UsuarioConId;
   public product : IProducto;
   public carritoVacio: number;
-  constructor( private cart : CartService, private router : Router, private apiProducto : SvProductoService) { }
+  public usuarioLinea: UsuarioConId;
+  public carro: any;
+  public carritoListar: Array<any> = [];
+
+  public carritoVerHtml: Array<any> = [];
+
+  constructor( private cart : CartService, private router : Router, private apiProducto : SvProductoService) { this.cart.getCarritos();  this.totalCompra = 0}
 
   ngOnInit() {
-    this.carrito = this.cart.getCarrito()
-    this.carrito.forEach(cart => {
-      this.totalCompra = cart.total + this.totalCompra;
-    })
-    this.carritoVacio = this.carrito.length
-    console.log(this.carritoVacio)
+    //this.carrito = this.cart.getCarrito()
 
-
+    this.cart.listarCarrito$.subscribe(data => {
+      this.carritoListar = data;
+    });
   }
 
+  ionViewDidEnter(){
+    this.usuarioLinea = JSON.parse(localStorage.getItem("user"));
+    console.log(this.usuarioLinea, 'Soy usuario en linea :D')
+    this.carro = this.carritoListar.find(elemento => {
+      return elemento.idUser === this.usuarioLinea.id
+    })
+
+    if(this.carro){
+      console.log(this.carro, ' ----> Soy this.carro ');
+      this.totalCompra = 0;
+    this.cart.obtenerCarrito(this.carro.id).subscribe(data => {
+      this.carritoVerHtml = data.carrito;
+      console.log(data.carrito);
+      this.carritoVerHtml.forEach(cart => {
+        this.totalCompra  += cart.precio;
+        console.log(cart.precio);
+      })
+    });
+    }else{
+      console.log('Bug Identificado')
+      this.router.navigate(['home/ver-carrito']).then(m => {
+        window.location.reload()
+      })
+    }
+  }
+
+
   public eliminarProducto(carrito){
-    const index = this.carrito.findIndex(cart =>
+    const index = this.carritoVerHtml.findIndex(cart =>
       cart.idProducto === carrito.idProducto
       )
       console.log(index)
-      this.carrito.splice(index,1)
-      this.totalCompra = this.totalCompra - carrito.total;
-      localStorage.setItem("carrito", JSON.stringify(this.carrito));
+      this.carritoVerHtml.splice(index, 1);
+
+      this.totalCompra = this.totalCompra - carrito.precio
+      this.cart.modificarCarrito({carrito: this.carritoVerHtml},this.carro.id).subscribe(data => {
+        console.log(data, '---------> Soy data dsp de patch')
+        console.log('Producto Eliminado del carrito');
+            });
   }
 
-  restarCarrito(carrito){
-    if(carrito.cantidad > 1){
-      carrito.cantidad = carrito.cantidad - 1;
-      carrito.total = carrito.precio * carrito.cantidad;
-      this.totalCompra = this.totalCompra - carrito.precio;
-      const index = this.carrito.findIndex(cart =>
-        cart.idProducto === carrito.idProducto)
-        console.log(index)
-        const nuevoCarrito = {
-          ...carrito,
-          total: carrito.total,
-          cantidad: carrito.cantidad
-        }
-        this.carrito.splice(index, 1, nuevoCarrito);
-        localStorage.setItem("carrito", JSON.stringify(this.carrito));
-    }
-    else{
-      const index = this.carrito.findIndex(cart =>
-        cart.idProducto === carrito.idProducto
-        )
-        console.log(index)
-        this.carrito.splice(index,1)
-        this.totalCompra = this.totalCompra - carrito.precio;
-        localStorage.setItem("carrito", JSON.stringify(this.carrito))
-    }
-  }
-
-  sumarCarrito(carrito){
-    carrito.cantidad = carrito.cantidad + 1;
-    carrito.total = carrito.precio * carrito.cantidad;
-    this.totalCompra= this.totalCompra + carrito.precio;
-    const index = this.carrito.findIndex(cart =>
-      cart.idProducto === carrito.idProducto)
-      const nuevoCarrito = {
-        ...carrito,
-        cantidad: carrito.cantidad,
-        total: carrito.total
-      }
-      this.carrito.splice(index, 1, nuevoCarrito);
-      localStorage.setItem("carrito", JSON.stringify(this.carrito))
-    }
-
-  pagarTotalCarrito(){
-    this.usuario =  JSON.parse(localStorage.getItem("user"))
+  public pagar(){
     this.cart.postCompra({
-      nombre : this.usuario.user,
-      idUser: this.usuario.id,
-      cart: this.carrito,
-      fecha: formatDate(new Date(), 'dd/MM/yyyy', 'en') ,
+      idUser: this.usuarioLinea.id,
+      cart: this.carritoVerHtml,
+      fecha: formatDate(new Date(), 'dd/MM/yyyy', 'en'),
       total: this.totalCompra
-    }).subscribe(data => {})
-    this.carrito.forEach(producto => {
-      this.apiProducto.getProducto(producto.idProducto).subscribe(data => {
-        this.product = data;
-      })
+    }).subscribe(m => {
+    let length = this.carritoVerHtml.length;
+    this.carritoVerHtml.splice(0, length);
+    this.cart.modificarCarrito({carrito: this.carritoVerHtml}, this.carro.id).subscribe(data => {
+      this.router.navigate(['home/compras'])
+      console.log('Carrito pagado correctamente')
     })
-    localStorage.setItem("carrito", '[]');
-    this.router.navigate(['home/compras']).then(() => {
-      window.location.reload()
+
     })
   }
 

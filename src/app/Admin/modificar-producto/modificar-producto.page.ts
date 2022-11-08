@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { SvProductoService } from '../../producto/services/sv-producto.service';
 import { IProducto } from './../../producto/modelo/i-producto';
 import { ActivatedRoute, Router} from '@angular/router';
+import { CartService } from './../../cart/servicio/cart.service';
 
 @Component({
   selector: 'app-modificar-producto',
@@ -14,12 +15,17 @@ export class ModificarProductoPage implements OnInit {
   public id: number;
   public producto: IProducto;
   public imagenBase64 = '';
+  public carritoListar: Array<any> = [];
+  public productoCarrito: Array<any> = [];
+  public asd: any;
+  public asdddd: Array<any> = [];
 
   constructor(
     private fb: FormBuilder,
     private api: SvProductoService,
     private activateRouter : ActivatedRoute,
-    private router :Router
+    private router :Router,
+    private cart : CartService
     ) { this.form();}
 
   public form(){this.formulario= this.fb.group({
@@ -53,10 +59,14 @@ export class ModificarProductoPage implements OnInit {
         'gabinete':this.producto.gabinete ,
         'tarjetaGrafica':this.producto.tarjetaGrafica ,
         'gama': this.producto.gama
-
-
       })
     })
+    this.cart.listarCarrito$.subscribe(data => {
+      this.carritoListar = data;
+      console.log(this.carritoListar)
+    })
+    this.cart.getCarritos();
+
   }
 
   public leerArchivo(evento : Event){
@@ -90,12 +100,33 @@ export class ModificarProductoPage implements OnInit {
       })
     })
   }
-  eliminarPersonaje():void{
+
+
+  eliminarPersonaje(){
+
+
+
     this.api.deleteProducto(this.id).subscribe(() =>
     alert('eliminado :('));
     this.router.navigate(['listar-producto']).then(() => {
       window.location.reload();
     })
-  }
+
+
+
+
+
+
+
+
+
+      console.log(this.asdddd)
+      //console.log(productoCarrito)
 
   }
+
+
+
+  }
+
+

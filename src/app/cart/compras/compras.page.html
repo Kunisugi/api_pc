@@ -15,7 +15,7 @@
       Productos
     </ion-item>
       <ion-item *ngFor="let carrito of compras.cart">
-        <p>Nombre producto: {{carrito.nombre}}</p>
+        <p>Nombre producto: {{carrito.nombreProducto}}</p>
       </ion-item>
       <ion-item>
       <p>Total compra: {{ compras.total | currency:'CLP'}}</p>

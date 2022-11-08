@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { UserServiceService } from '../servicio/user-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from 'src/app/cart/servicio/cart.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [LoginPage],
-  providers: [UserServiceService]
+  providers: [UserServiceService, CartService]
 })
 export class LoginPageModule {}

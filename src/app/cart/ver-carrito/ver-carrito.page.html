@@ -6,43 +6,38 @@
 
 <ion-content>
   <ion-button fill="outline" [routerLink]="['/home']" size="small" color="warning"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+      <ion-card  *ngFor="let cart of carritoVerHtml">
+        <img [src]="cart.img">
 
-  <p *ngIf="carritoVacio == 0; then noDatos else Datos"></p>
 
-    <ng-template #Datos>
-    <ion-card *ngFor="let item of carrito" >
-      <img [src]="item.foto" >
       <ion-card-content>
-        <p>{{item.nombre}}</p>
-        <p>Cantidad: {{item.cantidad}}</p>
-        <p >Precio Producto: {{item.total | currency: 'CLP'}}</p>
 
 
-        <ion-button color="danger" (click)="restarCarrito(item)"><ion-icon name="remove-circle-outline" ></ion-icon></ion-button>
+          <p>Nombre Producto: {{cart.nombreProducto}}</p>
 
-        <ion-button  (click)="sumarCarrito(item)"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
 
-        <ion-button color="danger" (click)="eliminarProducto(item)">
+          <p>Precio Producto: {{cart.precio}}</p>
+
+        <div style="text-align:center;">
+        <ion-button color="danger" (click)="eliminarProducto(cart)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
-      </ion-card-content>
+        </div>
+
+    </ion-card-content>
     </ion-card>
+    <br>
+    </ion-content>
+
+    <ion-footer style="text-align:center;">
+
+            Total Carrito: <h3>{{totalCompra | currency: 'CLP'}}</h3><br>
+
+          <ion-button style="text-align:center;" color="success" (click)="pagar()">Pagar</ion-button>
 
 
-</ng-template>
-<ng-template #noDatos><br> <h1>Añade productos a tu carrito!!!</h1></ng-template>
+    </ion-footer>
 
-</ion-content>
-<ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        Total Carrito: {{totalCompra | currency: 'CLP'}}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-button expand="full" color="success" (click)="pagarTotalCarrito()">Pagar</ion-button>
-    </ion-row>
-  </ion-grid>
-</ion-footer>
+
+
 

@@ -16,13 +16,21 @@ export class ListarPage implements OnInit {
   public listarProductos: Array<IProductoConId>= [];
   public usuarioLinea: UsuarioConId;
   public finProductos: string;
+  public verCarrito : Array<any> = [];
 
-  constructor(private api:SvProductoService, private router: Router, private cart : CartService) { }
+  constructor(private api:SvProductoService, private router: Router, private cart : CartService) {
+
+   }
 
   ngOnInit() {
     this.api.listarProductos$.subscribe(data => {
       this.listarProductos = data
       });
+
+      this.cart.getCarritos
+      this.verCarrito = this.cart.getCarrito();
+      console.log(this.verCarrito);
+
 
     const per = localStorage.getItem('user');
     this.api.listarPrimerosProductos();
